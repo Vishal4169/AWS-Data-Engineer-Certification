@@ -1,0 +1,208 @@
+DEA-C01
+
+1.Compute:
+
+objective:
+
+Amazon Elastic Compute Cloud (EC2)
+AWS Batch
+AWS Lambda
+AWS Serverless Application Model (SAM)
+Amazon Elastic Container Service (ECS)
+Amazon Elastic Container Registry (ECR)
+Amazon Elastic Kubernetes Service (EKS)
+
+
+//What is Compute in AWS?
+
+-compute resources are the brains and processing power required by applications and systems to carry out computational tasks via a series of instructions.
+-compute is closely related to common server components that you’re probably already familiar with, such as CPUs and RAM.
+-physical server within a data center would be considered a compute resource, as it probably has multiple CPUs and many gigabytes of RAM to process instructions given by the operating system and applications. 
+
+-there are a number of different services and features that offer compute power to provide different functions. 
+-Some services may utilize hundreds of EC2 instances, or virtual servers, which may be used continuously for months or even years, processing billions of instructions
+
+
+//Amazon EC2: Elastic Compute Cloud:
+
+-allows you to deploy virtual servers within your AWS environment
+
+.....components:
+
+Amazon Machine Images(AMIs):
+
+-AMIs are essentially templates of pre-configured EC2 instances which allow you to quickly launch a new EC2 instance based on the configuration defined within the AMI.
+
+-prevents you from needing to install an operating system or any other common applications that you might need to install on a number of other EC2 instances.
+
+- high-level perspective, an AMI is an image baseline that includes an operating system and applications, along with any additional custom configuration. 
+
+-different operating systems including Amazon Linux, macOS, Ubuntu, and Microsoft Windows, among others.
+
+-You can also create your own AMIs to help speed up your deployment process
+
+- custom AMI as the base image for a new instance and it will launch with Amazon Linux, your custom applications already installed, and any configuration changes already made.
+
+-implementing auto-scaling, where multiple instances of your baseline configuration may need to be spun up quickly to meet increasing levels of demand.
+
+-both AWS-managed and your own custom-managed AMIs, you could also select an AMI from the AWS Marketplace. 
+
+-choose from Community AMIs, which are public AMIs that can be created and shared by anyone.
+
+Instance types:
+
+. An instance type simply defines the size of the instance based on a number of different parameters, including:
+
+-vCPUs, which are the number of virtual CPUs on the instance,
+
+-Architecture, which is the processor architecture, such as i386, x86, or ARM,
+
+-Memory, or the number of gigabytes of RAM associated with the instance,
+
+-Storage, which shows the capacity of any local instance store volumes, if available on the instance, as well as 
+
+-Storage type, which indicates whether the instance store volumes are magnetic hard disks or SSDs, and 
+
+-Network performance, which shows the performance level or rate of data transfer.
+
+
+Note:vCPUs, memory, instance storage, and network performance is essential for creating the ec2
+
+These instance families can be summarized as follows:
+
+-General Purpose, which have a balanced mix of CPU, memory, and storage, making them ideal for small to medium databases, test and development environments, or web servers.
+
+-Compute Optimized, which have a greater focus on compute power and are ideal for applications requiring high performance processors, such as batch processing or machine learning.
+
+-Memory Optimized, which are primarily used for large-scale enterprise class in-memory applications, such as performing real-time processing of unstructured data.
+
+-Accelerated Computing, which utilize hardware accelerators or co-processors to perform floating-point calculations faster and more efficiently.
+
+-Storage Optimized, which are optimized for enhanced storage. Instances in this family use SSD backed instance storage for low latency and very high input/output, or I/O performance, including very high IOPS which is input/output operations per second. These instances are useful for data file systems and log processing applications.
+
+-And finally, HPC Optimized, which are designed for high performance computing, or HPC workloads.
+
+Instance purchasing options:
+
+optimize costs by allowing you to select the most appropriate option for your deployment. These options include:
+
+On-Demand Instances:
+
+-On-Demand Instances are EC2 instances that you can launch at any time and have provisioned and available for you to use within minutes.
+- You can use On-Demand Instances for as long as you need before terminating the instance. These instances have a flat hourly rate that’s based on the instance type you choose, and is billed by the second.
+- On-Demand Instances are typically used for short-term or irregular workloads that cannot be interrupted. 
+-Many customers use On-Demand Instances for testing and development environments. And once you stop or terminate your On-Demand Instance, you’ll stop paying for it.
+
+Spot Instances:
+
+-which leverage unused EC2 capacity to provide huge discounts over On-Demand pricing.
+
+- Spot instances have a variable hourly price that is set by AWS based on supply and demand. 
+
+-When launching Spot Instances, you have the ability to set a maximum price that you’re willing to pay for the instance. 
+
+-If the Spot price ever exceeds your maximum price, or if Spot capacity is no longer available, the EC2 service will reclaim the instance through what is called a Spot Instance interruption.
+
+- When this happens, your instance will terminate, stop, or hibernate based on the behavior you specified when creating your Spot request. 
+
+-Because demand for Spot Instances can fluctuate, there’s always a risk that your instances may be interrupted at any time. Because of this, Spot instances are only suitable for applications that are resilient to interruptions, such as batch jobs or background processing of data.
+
+Reserved Instances:
+
+-Reserved Instances allow you to purchase a discount for an On-Demand Instance type with set criteria and for a set period of time. 
+
+- makes them ideal for long-term and predictable workloads.
+
+-Reserved Instances must be purchased in either one-year or three-year commitments
+
+You can save even more money with Reserved Instances based on how much money you wish to pay up front:
+
+-With All Upfront, the complete payment for the Reserved Instance is paid at the beginning of the term. This offers the largest discount and no further payment is required regardless of the number of hours the instance is used.
+
+-If you choose Partial Upfront, a smaller payment is made at the start of the term and then a discount is applied to all remaining hours during the term.
+
+- And finally, with No Upfront, no upfront or partial payments are made and the smallest discount of these three options is applied to all the remaining hours in the term.
+
+Note:
+- purchased a Reserved Instance, it’s yours for the entire one or three-year term and can’t be canceled.
+
+-if your computing needs change during the course of your term, it may be possible to make changes to your Reserved Instance, or even exchange it for another one depending on which offering class you choose.
+
+-Reserved Instances come in two offering classes, Standard and Convertible.
+
+Standard Reserved Instance:
+ -it’s possible to modify some attributes of your instance, including its availability zone or size within your current instance family, such as going from a t2.micro to a t2.large. 
+ -Standard Reserved Instances cannot be exchanged or changed to a different instance family, so going from a t2.large to an m4.large would not be possible. That being said, it is possible to buy and sell Standard Reserved Instances in the AWS Reserved Instances Marketplace.
+
+Convertible Reserved Instance:
+-It can also be modified as I just described, but it can also be exchanged for another Convertible Reserved Instance with completely new attributes, including a different instance family, type, or platform.
+- But in exchange for this greater flexibility, Convertible Reserved Instances come with a smaller discount than Standard Reserved Instances. And unlike Standard Reserved Instances, it’s not possible to buy or sell Convertible Reserved Instances in the AWS Reserved Instances Marketplace.
+
+On-Demand Capacity Reservations.
+
+Tenancy,
+
+User data,
+
+Storage options, and
+
+Security.
+
+
+
+
+
+
+//.......Analytics and Machine Learning (DEA-C01)
+
+
+Amazon Athena;
+
+Amazon EMR;
+
+AWS Glue;
+
+AWS Lake Formation;
+
+Amazon Kinesis;
+
+Amazon QuickSight; and 
+
+Amazon SageMaker.
+
+
+
+@1...Using Amazon Athena SQL to Query Data in S3:
+
+- Amazon Athena is a serverless service that allows you to quickly query unstructured, semi-structured, and structured data.
+- Because Athena is serverless, there’s never any infrastructure for you to provision, configure, or manage.
+- Athena is based on Trino and Presto, which are open-source distributed SQL query engines that are designed for querying large, distributed data sets. 
+- This allows Athena to provide support for SQL queries and fast performance when scanning large datasets.
+
+
+Amazon Athena is ideal for a variety of use cases that include:
+
+-Ad hoc exploration of data and data discovery,
+
+-Analyzing and mining data stored in Amazon S3, or
+
+-Processing stored structured data from IoT devices, application logs, and AWS service logs.
+
+
+Athena supports many different data formats, including:
+
+-Comma or tab-separated values in text files, as well as
+
+-Raw logs and Apache web logs,
+
+-Simple or nested JSON-encoded files,
+
+-Compressed files, which may include files that are compressed with BZIP2, DEFLATE, GZIP, LZ4, LZO, SNAPPY, ZLIB, and ZSTD;
+
+-Columnar formats such as Apache Parquet and Apache Optimized Row Columnar, or ORC, and
+
+-AVRO formatted files.
+
+
+-Athena can also query logs from numerous AWS services, including CloudFront, CloudWatch, CloudTrail, and Elastic Load Balancing. You can also use Athena to query metadata stored within the AWS Glue Data Catalog.
+
