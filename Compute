@@ -133,17 +133,89 @@ Convertible Reserved Instance:
 -It can also be modified as I just described, but it can also be exchanged for another Convertible Reserved Instance with completely new attributes, including a different instance family, type, or platform.
 - But in exchange for this greater flexibility, Convertible Reserved Instances come with a smaller discount than Standard Reserved Instances. And unlike Standard Reserved Instances, it’s not possible to buy or sell Convertible Reserved Instances in the AWS Reserved Instances Marketplace.
 
-//On-Demand Capacity Reservations.
+On-Demand Capacity Reservations:
+-On-Demand Capacity Reservations allow you to reserve capacity for your EC2 instances based on different attributes such as instance type and platform within a particular availability zone.
+-However, On-Demand Capacity Reservations may be made for any length of time, not just one year or three years.
+- Ensures that you’ll always have the available number of instances you require within a specific availability zone immediately and without an unnecessarily long time commitment.
+-You don’t receive any billing discounts when using On-Demand Capacity Reservations, but you have the flexibility to create and cancel these reservations as often as you need. 
+-For additional cost savings, you can combine On-Demand Capacity Reservations with Reserved Instances or with EC2 Instance Savings Plans, which allow you to save money in exchange for a commitment to use a given amount of compute power over a given time period.
 
-//Tenancy,
+//Tenancy:
+-EC2 tenancy and how it relates to the underlying host, or physical server within an AWS data center where your EC2 instance will reside.
 
-//User data,
+Shared Tenancy:
+- launch a new EC2 instance, it will run with shared tenancy by default. This means it will run on any available host with the specified resources required for your selected instance type, regardless of which other customers and users may also have instances running on the same host, hence the name shared tenancy.
 
-//Storage options, and
+Note:
+-Now AWS implements advanced security mechanisms to prevent different customers’ EC2 instances from accessing each other on the same host, so there isn’t any sort of security risk here, but there may be instances where your workloads must run on dedicated hardware due to internal security policies or external compliance controls. In these cases, you’ll want to use dedicated tenancy.
+
+Dedicated Tenancy:
+-Dedicated tenancy includes both Dedicated Instances and Dedicated Hosts.
+
+Dedicated Instances:
+-Dedicated Instances are hosted on hardware that no other customers can access.
+-They incur additional charges because no other customers may run EC2 instances on the same hardware, and so there will likely be unused capacity remaining. 
+-However, this hardware can be shared by other resources you have running in your own account. 
+
+Dedicated Host:
+-A Dedicated Host is effectively the same as a Dedicated Instance.
+- Dedicated Hosts offer additional visibility and control around how you can place your instances on the physical host.
+- allow you to use your existing per-socket, per-core, or per-VM software licenses that may need to be tied to a specific machine.
+
+Note:
+- don't need to address any specific licensing, compliance, or security issues that would require dedicated tenancy, then I’d recommend using the default shared tenancy to reduce your overall costs.
+
+
+//User data:
+-When configuring a new EC2 instance, you’ll come across a section called User Data.
+-allows you to enter commands or a command script that will run during the first boot cycle of the instance.
+- way to automatically perform functions at boot time, such as pulling down additional software to install from any software repositories you may have.
+-download and install the latest OS updates. For example, you could enter yum update dash y, which for a Linux instance will update its own software automatically at the time of boot.
+
+//Storage options:
+-When setting up a new EC2 instance, you’ll also be asked to select and configure your storage requirements.
+- Selecting storage for your EC2 instance will depend on the type of instance selected, how you intend to use the instance, and how critical your data.
+-Persistent storage is available by attaching elastic block storage volumes using Amazon Elastic Block Store, or EBS. 
+-Ephemeral storage is created by some EC2 instances themselves using instance store volumes, which are local disks on the underlying physical host.
+
+Each of these storage options:
+-EBS volumes are separate devices from the EC2 instance itself, so they aren’t physically attached like ephemeral storage. 
+-EBS volumes are considered network-attached storage devices, which are then logically attached to the EC2 instance via the AWS network. 
+-This is similar to attaching an external hard drive to your home laptop or PC, where the external hard drive represents your EBS volume, and the PC represents your EC2 instance. 
+-The data on your EBS volumes is automatically replicated within the same availability zone for resiliency, which is managed by AWS. 
+-You can disconnect an EBS volume from your EC2 instance and the data will remain intact, allowing you to reattach it to another EC2 instance within the same availability zone if required.
+-It’s also possible to take point-in-time snapshots that will backup all the data on an EBS volume to S3.
+-You can also implement encryption on your EBS volumes if needed.
+-This can be done by default for all new EBS volumes and copies of snapshots you create by enabling encryption by default from within the EC2 dashboard in the AWS console. 
+-You can also choose to enable encryption on a per-volume basis instead.
+
+-Ephemeral storage, or instance-backed storage, is storage that is physically attached to the underlying host on which the EC2 instance resides.
+-You can’t detach an ephemeral instance store volume from an instance.
+-This is similar to your laptop or PC’s internal hard drive. There is one key difference here, though. With EC2 instances, all saved data on an instance store volume is lost as soon as the instance hibernates, is stopped, or is terminated.
+-If you reboot your instance, then the data will remain.
+-But if the instance hibernates, stops, or terminates, or if there’s any kind of hardware failure with the underlying disk, the data on that instance store volume will be lost forever.
+-Because instance store volumes are physically attached, they’re extremely fast, which makes them great for storing cache data and other temporary content.
+- if you have data that you need to retain, you should use EBS volumes for persistent data storage instead.
 
 //Security.
+-Security is fundamental with any AWS deployment. 
+-select a security group for your instance.
+-A security group is essentially an instance-level firewall allowing you to restrict both ingress and egress traffic to your instance by specifying what traffic is allowed to communicate with it.
+-You can restrict this communication by source ports and protocols for both inbound and outbound communication.
+-Your instances are then associated with this security group, which can then be associated with other instances
 
+Security Groups.
+-When creating an EC2 instance, you’ll also need to select an existing key pair or create and download a new one.
+- a key pair consists of a pair of keys: a public key and a private key. Key pairs are used to encrypt the login information for Linux and Windows EC2 instances, then decrypt that same information, allowing you to authenticate to the instance. 
+-The public key is used to encrypt data, such as the username and password. 
+-For Windows instances, the private key is used to decrypt this data, allowing you to gain access to the login credentials including the password. 
+-For Linux instances, the private key is used to remotely connect to the instance using SSH.
 
+-The public key is held and kept by AWS, but the private key is your responsibility to keep and ensure that it is never lost or compromised. 
+-If you choose to create a new key pair for your EC2 instance, it will download to your local machine after you create it.
+-After you’ve authenticated to your EC2 instance for the first time, you can set up additional, less-privileged access controls such as local Windows accounts, allowing other users to connect and authenticate to your instance.
 
+Note:
+-maintain and install the latest OS and security patches released by the OS vendor as dictated by the AWS Shared Responsibility Model.
 
 
