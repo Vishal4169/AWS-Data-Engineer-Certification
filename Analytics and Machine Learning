@@ -1,0 +1,11 @@
+Analytics and machine learning services in AWS, including:
+
+1.Amazon Athena
+2Amazon EMR
+3.AWS Glue
+4.AWS Lake Formation
+5.Amazon Kinesis
+6.Amazon QuickSight
+7.Amazon SageMaker
+
+1.0. Using Amazon Athena SQL to Query Data in S3:
