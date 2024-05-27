@@ -2,34 +2,30 @@ DEA-C01
 
 1.Compute:
 
-objective:
+Services:
+1.Amazon Elastic Compute Cloud (EC2)
+2.AWS Batch
+3.AWS Lambda
+4.AWS Serverless Application Model (SAM)
+5.Amazon Elastic Container Service (ECS)
+6.Amazon Elastic Container Registry (ECR)
+7.Amazon Elastic Kubernetes Service (EKS)
 
-Amazon Elastic Compute Cloud (EC2)
-AWS Batch
-AWS Lambda
-AWS Serverless Application Model (SAM)
-Amazon Elastic Container Service (ECS)
-Amazon Elastic Container Registry (ECR)
-Amazon Elastic Kubernetes Service (EKS)
-
-
-//What is Compute in AWS?
+1.0.What is Compute in AWS?
 
 -compute resources are the brains and processing power required by applications and systems to carry out computational tasks via a series of instructions.
 -compute is closely related to common server components that you’re probably already familiar with, such as CPUs and RAM.
 -physical server within a data center would be considered a compute resource, as it probably has multiple CPUs and many gigabytes of RAM to process instructions given by the operating system and applications. 
-
--there are a number of different services and features that offer compute power to provide different functions. 
+-There are a number of different services and features that offer compute power to provide different functions. 
 -Some services may utilize hundreds of EC2 instances, or virtual servers, which may be used continuously for months or even years, processing billions of instructions
 
-
-//Amazon EC2: Elastic Compute Cloud:
+1.1.Amazon EC2: Elastic Compute Cloud:
 
 -allows you to deploy virtual servers within your AWS environment
 
-.....components:
+components:
 
-Amazon Machine Images(AMIs):
+//Amazon Machine Images(AMIs):
 
 -AMIs are essentially templates of pre-configured EC2 instances which allow you to quickly launch a new EC2 instance based on the configuration defined within the AMI.
 
@@ -49,7 +45,7 @@ Amazon Machine Images(AMIs):
 
 -choose from Community AMIs, which are public AMIs that can be created and shared by anyone.
 
-Instance types:
+//Instance types:
 
 . An instance type simply defines the size of the instance based on a number of different parameters, including:
 
@@ -64,7 +60,6 @@ Instance types:
 -Storage type, which indicates whether the instance store volumes are magnetic hard disks or SSDs, and 
 
 -Network performance, which shows the performance level or rate of data transfer.
-
 
 Note:vCPUs, memory, instance storage, and network performance is essential for creating the ec2
 
@@ -82,7 +77,7 @@ These instance families can be summarized as follows:
 
 -And finally, HPC Optimized, which are designed for high performance computing, or HPC workloads.
 
-Instance purchasing options:
+//Instance purchasing options:
 
 optimize costs by allowing you to select the most appropriate option for your deployment. These options include:
 
@@ -138,71 +133,17 @@ Convertible Reserved Instance:
 -It can also be modified as I just described, but it can also be exchanged for another Convertible Reserved Instance with completely new attributes, including a different instance family, type, or platform.
 - But in exchange for this greater flexibility, Convertible Reserved Instances come with a smaller discount than Standard Reserved Instances. And unlike Standard Reserved Instances, it’s not possible to buy or sell Convertible Reserved Instances in the AWS Reserved Instances Marketplace.
 
-On-Demand Capacity Reservations.
+//On-Demand Capacity Reservations.
 
-Tenancy,
+//Tenancy,
 
-User data,
+//User data,
 
-Storage options, and
+//Storage options, and
 
-Security.
-
-
+//Security.
 
 
 
 
-//.......Analytics and Machine Learning (DEA-C01)
-
-
-Amazon Athena;
-
-Amazon EMR;
-
-AWS Glue;
-
-AWS Lake Formation;
-
-Amazon Kinesis;
-
-Amazon QuickSight; and 
-
-Amazon SageMaker.
-
-
-
-@1...Using Amazon Athena SQL to Query Data in S3:
-
-- Amazon Athena is a serverless service that allows you to quickly query unstructured, semi-structured, and structured data.
-- Because Athena is serverless, there’s never any infrastructure for you to provision, configure, or manage.
-- Athena is based on Trino and Presto, which are open-source distributed SQL query engines that are designed for querying large, distributed data sets. 
-- This allows Athena to provide support for SQL queries and fast performance when scanning large datasets.
-
-
-Amazon Athena is ideal for a variety of use cases that include:
-
--Ad hoc exploration of data and data discovery,
-
--Analyzing and mining data stored in Amazon S3, or
-
--Processing stored structured data from IoT devices, application logs, and AWS service logs.
-
-
-Athena supports many different data formats, including:
-
--Comma or tab-separated values in text files, as well as
-
--Raw logs and Apache web logs,
-
--Simple or nested JSON-encoded files,
-
--Compressed files, which may include files that are compressed with BZIP2, DEFLATE, GZIP, LZ4, LZO, SNAPPY, ZLIB, and ZSTD;
-
--Columnar formats such as Apache Parquet and Apache Optimized Row Columnar, or ORC, and
-
--AVRO formatted files.
-
-
--Athena can also query logs from numerous AWS services, including CloudFront, CloudWatch, CloudTrail, and Elastic Load Balancing. You can also use Athena to query metadata stored within the AWS Glue Data Catalog.
 
