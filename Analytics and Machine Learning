@@ -9,3 +9,39 @@ Analytics and machine learning services in AWS, including:
 7.Amazon SageMaker
 
 1.0. Using Amazon Athena SQL to Query Data in S3:
+
+-Amazon Athena can be used to query data that’s stored in Amazon S3 using SQL.
+-Amazon Athena is a serverless service that allows you to quickly query unstructured, semi-structured, and structured data. 
+-Athena is serverless, there’s never any infrastructure for you to provision, configure, or manage. Athena is based on Trino and Presto, which are open-source distributed SQL query engines that are designed for querying large, distributed data sets. 
+-This allows Athena to provide support for SQL queries and fast performance when scanning large datasets.
+
+//Amazon Athena is ideal for a variety of use cases that include:
+1.Ad hoc exploration of data and data discovery,
+2.Analyzing and mining data stored in Amazon S3, or
+3.Processing stored structured data from IoT devices, application logs, and AWS service logs.
+
+-Athena allows you to query S3 using standard SQL syntax, you can reuse your in-house SQL skills and competencies without the need for a full blown relational database and the associated infrastructure and administrative costs that typically go along with it.
+
+-Amazon Athena has been designed with simplicity in mind. It’s extremely easy to set up, and once up and running becomes a powerful and productive analytics tool. At a high level, the following steps are all you need to get started with Athena:
+1.First, you’ll log in to the Athena console. 
+2.Create a new database,
+3.Create a new table within that database, and finally,
+4.Start issuing queries.
+
+- Athena is serverless, there’s no infrastructure or servers to provision or manage. So with essentially zero spin up time, it’s easy to get started right away.
+
+-When you first log in to the Athena console, you’ll be prompted to specify an S3 bucket that will serve as the query output location for your Athena query results, which are saved as an object within that bucket.
+
+-You can point to an existing S3 bucket or create a new one, and you can configure settings that include whether your query results should be encrypted.
+
+-Once you’ve configured your query output location,
+1.you can start using the Athena Query Editor, which is where all the action takes place. You can author DDL statements and perform SQL queries directly from within the Query Editor.
+2.The Query Editor also provides several features to enhance your productivity such as auto-formatting of SQL statements, typeahead code suggestions, Recent Queries, and Saved Queries. 
+
+Athena supports many different data formats, including:
+-Comma or tab-separated values in text files, as well as
+-Raw logs and Apache web logs,
+-Simple or nested JSON-encoded files,
+-Compressed files, which may include files that are compressed with BZIP2, DEFLATE, GZIP, LZ4, LZO, SNAPPY, ZLIB, and ZSTD;
+-Columnar formats such as Apache Parquet and Apache Optimized Row Columnar, or ORC, and
+-AVRO formatted files.
