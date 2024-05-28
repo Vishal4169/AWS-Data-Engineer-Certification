@@ -47,4 +47,82 @@ Athena supports many different data formats, including:
 -AVRO formatted files.
 
 
+-Athena can also query logs from numerous AWS services, including CloudFront, CloudWatch, CloudTrail, and Elastic Load Balancing.
+-You can also use Athena to query metadata stored within the AWS Glue Data Catalog.
+
+-Once we’ve identified the format of our data source, 
+-we’ll need to define the schema associated with the data we wish to query and specify it within a CREATE TABLE statement that we’ll run in the Query Editor to create our new table. -We’ll give each column a name and a data type, such as DATE, STRING, or INT. And if we’re using a data source such as CloudFront logs, where the fields are tab-delimited but one of those fields is a multi-value field that itself contains a semicolon-delimited list of values, we’ll also need to specify a regular expression in order for Athena to be able to properly parse the values stored within that field.
+
+- The EXTERNAL keyword is always required.
+-It informs Athena to build a view over the data in S3. 
+-The CREATE statement will fail if the EXTERNAL keyword is missing. 
+-If an Athena table is dropped, the raw data remains unmodified in the S3 bucket.
+-The SERDE keyword indicates the serialization/deserialization format to work with. 
+-In this example, we're using a regular expression parser as indicated by the reference to the RegexSerDe library. Here, the supplied RegEx pattern is used to extract out the data fields, which include a multi-value field that is semicolon-delimited. And finally, the LOCATION keyword specifies the location of the data set stored in S3. So once we run this statement in the Query Editor, a new table will appear in the list of tables within our database.
+
+-Amazon Athena is designed to process data using what’s known as a schema on read technique. This allows you to project your schema onto your data at the time your query is evaluated. This approach eliminates the need to perform any additional ETL or data transformation operations on the data you wish to query.
+
+-Athena has been designed and tuned with performance in mind. Athena will automatically run multiple queries in parallel, and will begin to stream results back to the Query Results pane as soon as the first matching records are found.
+
+-Within the Query Editor, you can also view Query Stats that include the number of rows and bytes in each query’s input and output, as well as the execution details for each query.
+
+-The Recent Queries feature maintains a list of all previously executed queries. Each query is recorded with the following attributes: 
+1.query SQL
+2.start time,
+3.status
+4.run time
+5.cache
+6.data scanned
+7.query engine used, and encryption. 
+
+-The run time and data scanned attributes are useful to help you discover any queries that either weren’t performed at all, or that may have been particularly costly. We’ll discuss a strategy for dealing with these costly queries shortly. And finally, you can also download the results evaluated at the time of execution for any query that successfully completed.
+
+-The Saved Queries feature is self-explanatory. Within the Query Editor, you can choose to save any query. This will add your query to the list of Saved Queries, which saves you time and effort from having to reconstruct important queries in the future. Clicking a query within the Saved Queries view will automatically load it back into the Query Editor.
+
+-You can also connect to Athena with other SQL clients and third-party business intelligence tools using standard ODBC or JDBC connectivity. For example, you can configure Tableau, which is a data analytics visualization client, to connect to Athena using a driver provided by AWS.
+
+-Athena can also be controlled from the command line using the AWS CLI. For example, to create a new named query, you would issue the following command:
+
+Command :aws athena create-named-query --name numstaff --database CloudAcademyDB --query-string “SELECT * FROM CloudAcademyDB.UserTable WHERE age < 21”
+
+-Now let’s discuss pricing and how we can manage costs. 
+-Athena costs are based on the number of bytes that are scanned by your queries, rounded up to the nearest megabyte with a 10-megabyte minimum per query.
+-AWS currently charges a rate of $5 USD per terabyte of data scanned. 
+-Athena also allows you to use provisioned capacity for your SQL queries, which allows you to purchase Data Processing Units, or DPUs
+- Each DPU provides 4 vCPUs and 16 gigabytes of memory at a rate of 30 cents per DPU-hour, with an 8 hour minimum.
+
+-To reduce your costs when dealing with exceptionally large data sets, you should consider the following options:
+
+1.Compressing your data, which will reduce the total amount of data Athena needs to process in order to perform your query;
+
+2.Converting your data to use a columnar storage format like Parquet or ORC, which allows Athena to read only the columns it needs when processing your query; or
+
+3.Partitioning your data, which allows Athena to only process data that is relevant to your query.
+
+Note:
+-As a general rule, you should always strive to reduce the amount of data that's being scanned by your Athena queries. And by taking advantage of one or more of these options, you'll achieve significant cost savings and performance gains.
+
+-In this example, we’re going to partition our data on the age attribute. We’ll use the PARTITIONED BY keyword to define the attribute upon which the partition will be established, which in this case is the age attribute. You can partition on a single attribute or multiple attributes. In fact, a common practice is to partition data based on the time attributes of year, month, and day, which leads to a multilevel partitioning scheme.
+
+-Now finally, we need to load the partitions into our table before we can start querying it. There are two ways to load these partitions: either manually by using an ALTER TABLE statement, or automatically by using the MSCK REPAIR TABLE statement. Note that in order to do this automatically, however, your object key names must conform to a specific pattern.
+
+-For this example, we’ll go with the first option. This will set up four individual partitions, one per unique age folder.
+
+-We’ll execute these ALTER TABLE statements one at a time to add our partitions. And once our partitions are in place, we can then run queries based on our partition attribute, which will significantly reduce the amount of data that needs to be scanned. So for instance, if we want to search for users who are younger than 21, we can execute this query, which will result in fewer raw files and bytes being scanned:
+
+-The query will also execute significantly faster than if we hadn’t partitioned our table.
+
+For more advanced query scenarios, such as when you have a requirement to perform multiple queries at a time, or you need to perform recurring queries that fetch data from multiple different sources, you can leverage Athena jobs. Athena jobs are built on AWS Step Functions and allow you to orchestrate serverless state machine workflows. Athena provides a series of example workflow projects that you can customize based on your requirements. These projects include templates for:
+
+1.Executing multiple queries, either in sequence or in parallel,
+
+2.Using an AWS Glue crawler to query large data sets and ingest data into S3, and
+
+3.Querying a target table, then updating it with data from other sources.
+
+
+1.1. Using Amazon Athena for Apache Spark:
+
+z
+
 
