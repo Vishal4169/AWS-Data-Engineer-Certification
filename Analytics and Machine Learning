@@ -45,3 +45,6 @@ Athena supports many different data formats, including:
 -Compressed files, which may include files that are compressed with BZIP2, DEFLATE, GZIP, LZ4, LZO, SNAPPY, ZLIB, and ZSTD;
 -Columnar formats such as Apache Parquet and Apache Optimized Row Columnar, or ORC, and
 -AVRO formatted files.
+
+
+
