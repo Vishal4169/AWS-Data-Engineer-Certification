@@ -13,3 +13,39 @@ Introduction:
 6.AWS CodeDeploy; and
 
 7.AWS CodePipeline.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1.0. What is the AWS CLI?
+
+
+-The AWS Console lets you create and manage resources in a very easy and simplistic format. However, eventually, you’ll find that certain operations can be performed more efficiently using the AWS Command Line Interface. For example, say you have tons of EC2 instances supporting a website and you need to run a report to list the Public IP addresses from each one of these servers. These IP addresses may change over time, so you’ve been asked to run the report daily. 
+
+-Eventually, you’ll find that scripting out commands and creating bash scripts is more efficient for a lot of workloads in AWS - and provides a safer and less error-prone approach to working with AWS resources.
+
+-Whenever you create, edit, or delete a resource in the AWS Console, you’re making an API call to the services. You can make these same API calls using the AWS CLI. The difference is how you interface with the API. Instead of logging into the console, you’ll use a terminal program to access the AWS CLI. 
+
+You can use a 
+-Linux shell, 
+-the built-in MAC terminal, 
+-an EC2 instance, or if you’re on a PC,
+-you can use a program like PuTTy. 
+
+
+1.1. Installing the AWS CLI:
+
+- I’ll be installing the latest version of the AWS CLI, which currently is AWS CLI v2. I’ll be installing the CLI on a Mac, so keep that in mind if you’re following along, as the syntax for Windows and Linux machines is different. But have no fear, you can always consult the AWS documentation for the appropriate commands for your operating system. 
+
+Here I am in my terminal, and the first command I’m going to run is aws –version. This checks which version of the AWS CLI I currently have. As you can see, it cannot find the aws command, which means it’s not currently installed. 
+
+To install the latest version of the CLI, I’m going to use the commands from the Mac section of the documentation. Here you can see there are two major commands you have to run: a download command and an install command. 
+
+For Mac, the first command you’ll need to run will use the curl command to download the file from this address. Then, using the -o option, it names the file AWSCLIV2. Let’s run this command in the terminal. 
+
+After it installs successfully, I’ll go back to the documentation and use the second command. This will run the installation using the Mac standard installer program. It uses the -pkg parameter to specify which package to install. And then the -target parameter to specify where I want to install it. 
+
+Let’s run this in the terminal. I’ll input my password here. 
+
+It looks like the command successfully ran, so let’s double-check to make sure the AWS CLI is installed properly. To do this, I’ll run aws –version once again. And it looks like the version is installed and up to date so I’m good to go! 
+
+If you’re having issues with the installation - for example, if the aws keyword returns a command not found error, you may want to double-check to see if you’re following the correct instructions for your operating system. Remember that these commands will be different for both Linux and Windows, so be sure to check the documentation. 
+
+That’s all for this one - see you soon!
