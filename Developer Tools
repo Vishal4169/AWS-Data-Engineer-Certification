@@ -32,20 +32,34 @@ You can use a
 
 1.1. Installing the AWS CLI:
 
-- I’ll be installing the latest version of the AWS CLI, which currently is AWS CLI v2. I’ll be installing the CLI on a Mac, so keep that in mind if you’re following along, as the syntax for Windows and Linux machines is different. But have no fear, you can always consult the AWS documentation for the appropriate commands for your operating system. 
+- I’ll be installing the latest version of the AWS CLI, which currently is AWS CLI v2. 
+-I’ll be installing the CLI on a Mac, so keep that in mind if you’re following along, as the syntax for Windows and Linux machines is different. But have no fear, you can always consult the AWS documentation for the appropriate commands for your operating system. 
+-To run : aws –version. This checks which version of the AWS CLI I currently have.
+-To install the latest version of the CLI, I’m going to use the commands from the Mac section of the documentation. Here you can see there are two major commands you have to run: a download command and an install command. 
+-For Mac, the first command you’ll need to run will use the curl command to download the file from this address. Then, using the -o option, it names the file AWSCLIV2. 
+-After it installs successfully, I’ll go back to the documentation and use the second command. This will run the installation using the Mac standard installer program. It uses the -pkg parameter to specify which package to install. And then the -target parameter to specify where I want to install it. 
+-It looks like the command successfully ran, so let’s double-check to make sure the AWS CLI is installed properly. To do this, I’ll run aws –version once again.
 
-Here I am in my terminal, and the first command I’m going to run is aws –version. This checks which version of the AWS CLI I currently have. As you can see, it cannot find the aws command, which means it’s not currently installed. 
+1.2. Configuring Credentials:
+-credentials usually come in the form of either an access key and secret access key, or temporary credentials through a single-sign-on service.
 
-To install the latest version of the CLI, I’m going to use the commands from the Mac section of the documentation. Here you can see there are two major commands you have to run: a download command and an install command. 
+-MacOS terminal, so the syntax would be “export AWS_ACCESS_KEY_ID=”
+-secret access key, using the command “export AWS_SECRET_ACCESS_KEY=” 
+- “aws s3 ls” : listing my s3 buckets 
+-For every command I run, it will then use these credentials for authorization, overriding any other credentials I’ve configured, until the end of my shell session. However, if you want these credentials to last beyond the end of the shell session, it’s recommended you set up your default profile instead. If you’re using your own personal AWS account, setting up the default profile is the most common approach of setting up your credentials. 
 
-For Mac, the first command you’ll need to run will use the curl command to download the file from this address. Then, using the -o option, it names the file AWSCLIV2. Let’s run this command in the terminal. 
+I can do this by running aws configure, and it will prompt me for four pieces of information:  my access key, which I will paste in, my secret access key, which I will also paste in here. My default region, which is where you want to send your requests to by default. I mainly work out of the US Oregon region, so I can specify us-west-2. And then it will ask for a default output, which you can specify as json, yaml, yaml-stream, text, or table. I’m going to specify yaml as my default output. 
 
-After it installs successfully, I’ll go back to the documentation and use the second command. This will run the installation using the Mac standard installer program. It uses the -pkg parameter to specify which package to install. And then the -target parameter to specify where I want to install it. 
+Once I set these configurations, I can view them in the .aws directory. Let’s go to this directory by running the command cd ~/.aws/. From here I’ll list the contents of the directory using ls. This directory has a few files in it. The important ones for this lecture are the AWS credentials file and the AWS Config file. If I use the cat command to display the config file, you can see it contains the less sensitive information I selected, such as the default region and the default output. 
 
-Let’s run this in the terminal. I’ll input my password here. 
+I’ll go ahead and do the same with the credentials file, using cat credentials. You can see it contains the access keys that I copy and pasted when I ran aws configure. 
 
-It looks like the command successfully ran, so let’s double-check to make sure the AWS CLI is installed properly. To do this, I’ll run aws –version once again. And it looks like the version is installed and up to date so I’m good to go! 
+Now, the issue that most companies have with this approach is that the access keys may not be changed regularly, so companies often choose to integrate an SSO service with the AWS CLI so that credentials can be changed dynamically. This approach is most commonly used if you’re using a company-provided AWS account. 
 
-If you’re having issues with the installation - for example, if the aws keyword returns a command not found error, you may want to double-check to see if you’re following the correct instructions for your operating system. Remember that these commands will be different for both Linux and Windows, so be sure to check the documentation. 
+Most SSO services follow a similar sign-in flow, so for ease, I’ll show you the login flow using the AWS SSO service. I’ve already set the service up in the AWS console and integrated users from an Active Directory setup. After that is complete, I’m going to clear my screen here and then run the command ‘aws configure sso’. The first thing it asks for is the start URL, which your administrator will provide to you. So, I’ll paste in my start URL here. 
 
-That’s all for this one - see you soon!
+And then select the region my AWS SSO is set up in, which is us-east-1. 
+
+Then, I am redirected to a browser that asks me to log in. I’ll log in using my username and password for my active directory user. After I’ve successfully logged in, I’ll go back to the terminal. Here, I can see which accounts and roles I have available for me to use, and I just have one role, called ViewOnly that I can access in one account. I can then start to run commands using this role. 
+
+In summary, use the aws configure command to set up your default profile. This command will modify two files: the config and the credentials file.  Additionally, you can use SSO services with the AWS CLI to source credentials. That’s it for this one - see you next time! 
