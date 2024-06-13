@@ -1,0 +1,23 @@
+decoupled and event-driven architectures
+
+-Decoupled architecture, and to understand decoupling, we first need to address monolithic architectures which is how applications have been done in the past.
+-Monolithic applications were built with a close and tight-knit relationship to each other, for example, between the front end and back end of an application. 
+-If a change was made the back end, it could easily disrupt services and operation in the front end, and that's because they were very tightly coupled together and had a lot of built-in dependencies against each other. 
+-Although this had some advantages, it wasn’t able to offer what a decoupled architecture could.
+
+-When you implement and design a solution using a decoupled architecture you are building a solution put together using different components and services that can operate and execute independently of one another, instead of being closely coupled to each of its connecting components to operate and function.
+-Each component in a decoupled solution is effectively unaware of any other changes to other components due to the segregation of boundaries applied.
+
+Each service within a decoupled environment communicates with others using specific interfaces which remain constant throughout its development regardless of what configurations are made. By having this layered and independent approach, you are able to design, develop and configure each component without worrying about any dependencies within your solution. This allows your development teams to work faster and more efficiently as their scope of operation is refined on a particular service or component. They can make changes to a specific area of the application without having to worry about affecting other components, this helps to drive innovation and progress at a far greater rate.
+
+As you go through this course, I will introduce you to an AWS service that is commonly used in a decoupled architecture, this being Amazon SQS, the Simple Queue Service.
+
+Let me now look at Event-Driven Architectures.
+
+Event-driven architectures closely relate and interact with decoupled architectures, however, services in an event-driven architecture are triggered by events that occur within the infrastructure. So what is an event? Well, an event can be a number of things, for example, a change of state, so a resource such as an EC2 instance changing from ‘running’ to ‘stopped’—that is a change of state, or perhaps an order has been placed on your website and an item has been moved from for sale to sold, that could be a change of state within your application.
+
+When utilizing and implementing event-driven architectures in AWS, they will typically have three components: a producer, an event router, and consumers.
+
+A producer is the element within the infrastructure that will push an event to the event router. The event router then processes the event and takes the necessary action in pushing the outcome to the consumers. By having the event router sat between both the producer and consumers, each of these two components are decoupled from each other and carry the benefits of a decoupled architecture that I discussed previously.
+
+As we go through this course, I will introduce you to a number of different event-driven services, which act as the event routers, and these include Amazon SNS (the Simple Notification Service), Amazon Kinesis, and AWS Lambda.
