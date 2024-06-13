@@ -1,4 +1,4 @@
-decoupled and event-driven architectures
+//Decoupled and event-driven architectures
 
 -Decoupled architecture, and to understand decoupling, we first need to address monolithic architectures which is how applications have been done in the past.
 -Monolithic applications were built with a close and tight-knit relationship to each other, for example, between the front end and back end of an application. 
@@ -8,16 +8,126 @@ decoupled and event-driven architectures
 -When you implement and design a solution using a decoupled architecture you are building a solution put together using different components and services that can operate and execute independently of one another, instead of being closely coupled to each of its connecting components to operate and function.
 -Each component in a decoupled solution is effectively unaware of any other changes to other components due to the segregation of boundaries applied.
 
-Each service within a decoupled environment communicates with others using specific interfaces which remain constant throughout its development regardless of what configurations are made. By having this layered and independent approach, you are able to design, develop and configure each component without worrying about any dependencies within your solution. This allows your development teams to work faster and more efficiently as their scope of operation is refined on a particular service or component. They can make changes to a specific area of the application without having to worry about affecting other components, this helps to drive innovation and progress at a far greater rate.
+-Each service within a decoupled environment communicates with others using specific interfaces which remain constant throughout its development regardless of what configurations are made.
+-By having this layered and independent approach, you are able to design, develop and configure each component without worrying about any dependencies within your solution. 
+-This allows your development teams to work faster and more efficiently as their scope of operation is refined on a particular service or component.
+-They can make changes to a specific area of the application without having to worry about affecting other components, this helps to drive innovation and progress at a far greater rate.
 
-As you go through this course, I will introduce you to an AWS service that is commonly used in a decoupled architecture, this being Amazon SQS, the Simple Queue Service.
+..>Decoupled architecture, this being Amazon SQS, the Simple Queue Service.
 
-Let me now look at Event-Driven Architectures.
+-Event-driven architectures closely relate and interact with decoupled architectures, however, services in an event-driven architecture are triggered by events that occur within the infrastructure. 
+-Event can be a number of things, for example, a change of state, so a resource such as an EC2 instance changing from ‘running’ to ‘stopped’—that is a change of state, or perhaps an order has been placed on your website and an item has been moved from for sale to sold, that could be a change of state within your application.
 
-Event-driven architectures closely relate and interact with decoupled architectures, however, services in an event-driven architecture are triggered by events that occur within the infrastructure. So what is an event? Well, an event can be a number of things, for example, a change of state, so a resource such as an EC2 instance changing from ‘running’ to ‘stopped’—that is a change of state, or perhaps an order has been placed on your website and an item has been moved from for sale to sold, that could be a change of state within your application.
+-When utilizing and implementing event-driven architectures in AWS, they will typically have three components: a producer, an event router, and consumers.
 
-When utilizing and implementing event-driven architectures in AWS, they will typically have three components: a producer, an event router, and consumers.
+-A producer is the element within the infrastructure that will push an event to the event router. The event router then processes the event and takes the necessary action in pushing the outcome to the consumers.
+-By having the event router sat between both the producer and consumers, each of these two components are decoupled from each other and carry the benefits of a decoupled architecture that I discussed previously.
 
-A producer is the element within the infrastructure that will push an event to the event router. The event router then processes the event and takes the necessary action in pushing the outcome to the consumers. By having the event router sat between both the producer and consumers, each of these two components are decoupled from each other and carry the benefits of a decoupled architecture that I discussed previously.
+-Number of different event-driven services, which act as the event routers, and these include Amazon SNS (the Simple Notification Service), Amazon Kinesis, and AWS Lambda.
 
-As we go through this course, I will introduce you to a number of different event-driven services, which act as the event routers, and these include Amazon SNS (the Simple Notification Service), Amazon Kinesis, and AWS Lambda.
+
+//EventBridge:
+
+-You might start off working with very rigid monolithic systems where your goal is to just build something that works. These systems have the inherent problem of being very tightly coupled together and if one part of it would fail maybe the whole thing would fail as well. 
+
+-Additionally, it's extremely hard to scale these systems appropriately because they're all locked together. If one part of the system is receiving too much load, unfortunately, the whole system must scale together and this can create waste.
+
+-Then one might have moved to a more decoupled approach of having microservices that are independent of each other. These microservices would have their own development teams and their own resources. They would be operating with public APIs that allow other services to call them and request data in a restful manner. 
+
+-While this is a much better approach, it does still require that some of these other services be aware of each additional service that joins the fold. For example, an order service would need to know about the invoice service, the shipping service, and anything else required to move a product around the globe.
+
+-Even though this might be simply adding another line of code into a fairly simple program, that still an additional touchpoint that would require two teams to contact and work with each other. 
+
+In dynamic and fast-paced environments sometimes it's hard to align priorities. Working on these mission-critical things for one team might seem like the obvious choice, while the other might not find it so worrisome.
+
+This leads us onto our next system which is an event-based architecture. An event-based architecture allows you to decouple your services even further. This system allows your services to essentially be waiting for flags to be sent up from an upstream service. This flag is called an event - and we can have our microservice take action based on that event.
+
+An event for example might be the order processing service saying “hey I've just completed an order and here are its details”. This event would then be heard by anyone listening for it - like the invoicing service, or a shipping service, and could make a decision based on it. And the nice part about this is you don't need to hook up anything to the ordering service, you just have to set up any new services that you have come online to listen for that specific event. Events can contain information around the thing they're talking about, like the order number or a customer ID, that the listening services can use for their own logic.
+
+So with all that qualifying information out of the way, I'd like to discuss our topic of this video: Amazon EventBridge. 
+
+Amazon EventBridge is an event coordinator. It allows you to intake information from both external SAAS providers as well as internal AWS services and even your own custom applications. 
+
+From this information, it can output events that other systems Listen to and make decisions upon. 
+
+Amazon EventBridge allows you to set up routing rules that can also determine where your Events are sent and allows your system to react in real time.
+
+Amazon event bridge main concepts
+
+In order to really start talking about the Amazon EventBridge I think we need to dissect what an event actually is made up of. Events are JSON-formed strings that have a common series of variables that are shared across all of the AWS-type events.
+
+As I describe what these variables represent, I'm going to do so in reference to the following example, which is an EBS Snapshot notification Event. Now the variables that are common across all AWS Events are the following:
+
+Version - This variable is set to 0 by default for all events. Maybe sometime in the future Amazon will come up with another version of these events and this number might change.
+
+ID - This is just a unique identifier that is included with every event. It helps in distinguishing between the millions of events that happen every day within AWS.
+
+Detailed type - Our first real identification of what this event is acting upon. In our example of the EBS Snapshot notification it is simply: "EBS Snapshot Notification",
+
+Source - The source variable will tell you who actually generated this event in the first place. This is helpful because when we look at the detailed type variable from above, EBS didn't necessarily create this Event, the actual source would be EC2.
+
+Account - quite simply the AWS account that generated this event.  
+
+Time - The timestamp at which the event was created. if this event was over a long period of time there can be a large delta between this timestamp and the time the event is actually received by the event bridge.
+
+Region - the AWS region where this event originated from.
+
+Resources - A simple Jason array containing the ARN’s of the resources that were involved in this event.
+
+And finally, we get to the important portion of this event the Details section.
+
+Details - Details are a simple JSON object, which contains the contents of the event. Here we can see that snapshot was created successfully, its associated ID, and how long the process took.
+
+At this point in time, there are over 90 AWS services that are able to create these events. These services include Lambda, Amazon Kinesis, AWS fargate, and a whole host of others.  
+
+Additionally, Eventbridge is the only event-based service that integrates directly with other third-party software as a service provider.
+
+These providers include places like: Zendesk - A customer service and ticketing management system, Auth 0 - provides authentication and security services, and segment, a marketing data analytics and warehousing service.  
+
+Overall there's a total of 30 different software as a service provider integrations available for Amazon event bridge that can help send events straight into your systems.
+
+https://docs.aws.amazon.com/eventbridge/latest/userguide/create-partner-event-bus.html#eb-supported-integrations
+
+The Event Buses
+
+Now that we know what events are, what goes into them, and that over 90 AWS services can output them - we can talk about the Event Bus!
+
+The event bus is where all of our events will land once they have been triggered. It is the funnel that catches all of the data that your services create.
+
+Your account automatically comes pre-built with one by default, called the default event bus, which receives events only from AWS services.
+
+You can create more event buses for custom services such as your own applications. And if you wish to see events from partner sources you just have to associate them with a partner event bus.
+
+One cool aspect of the event bus is that you can associate rules with them. Each event bus in your account can have up to 100 rules associated, and if your solution will require a lot of rules you might need to create more custom buses.
+
+Now you might be asking but what can a rule do?
+
+Rules
+
+Well, rules are a key part of Amazon event bridge, as they allow you to filter through the large numbers of events that are on your event bus at anytime. Using rules you can define specific events you are interested in, such as an S3 put event, and set up wherein the architecture you want that information to go.
+
+A single rule can even pass information to multiple targets, all of which can act in parallel. It is important to know however that rules are not processed in any particular order.
+
+Your rules can also be triggered based on a schedule if you only want to run them every so often. There is an option to set this explicitly in the console, with days, weeks, months, as well as the option to configure it as a cron job.
+
+When creating your rules, you need to specify a target for the event to be passed on to. 
+
+Targets
+
+Targets are the key part of the Amazon event system because they are the objects that do the work on the events themselves. Targets might include Amazon EC2 instances, Lambda functions, Kinesis streams, Amazon ECS tasks, and a whole lot more. At the moment the service supports 15 as targets.
+
+But don't be dissuaded if that sounds like a small number because the targets that are available here, such as step functions, allow you to do incredible things and can build out entire architectures almost by themselves.
+
+On another note you can even have your rules send events to another account. These are called cross-account events and they can be sent either to the default bus or another custom bus within that account.
+
+Amazon EventBridge vs CloudWatch events
+
+Now if some of these ideas have started to sound familiar to you, like you have heard of them somewhere else before… Amazon Eventbridge was actually CloudWatch events but rebranded and rebuilt with more functionality. 
+
+The big difference as we have already discussed, is that event bridge allows you to integrate both with AWS services and software as a service provider. it's also fully backwards compatible, and in general if you're already using cloud watch events you don't have to really make any changes to your cloud formation templates or API calls.
+
+Overview of the above
+
+So to sum up what we just talked about in regards to events, an event is created and triggered by a service, it then gets put on the event bus, these events are then looked at by our various rules that we set up to help filter them, and then these rules send out the information to targets, and the targets will do some sort of work based on that event.
+
+Pretty straightforward.
