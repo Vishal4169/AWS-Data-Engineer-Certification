@@ -1,0 +1,300 @@
+
+Refer the Yt Channel:
+M prashant ,
+Abhishek , 
+techworld with nana, 
+kodekloud, 
+DevOps Shack, 
+Technical Guftgu(Hindi)
+
+
+AWS Services:
+
+    1.Amazon Elastic Compute Cloud [EC2]
+
+    2.AWS Batch
+
+    3.AWS Lambda
+
+    4.AWS Serverless Application Model[SAM]
+
+    5.Amazon Elastic Container Service[ECS]
+
+    6.Amazon Elastic Container Registry[ECR]
+
+    7.Amazon Elastic Kubernetes Service[EKS]
+
+    8.Amazon Simple Storage Service[S3]
+
+    9.Amazon Elastic Block Store[EBS]
+
+    10.Amazon Elastic File System[EFS]
+
+    11.AWS Backup
+
+    12.Amazon Relational Database Service[RDS]
+
+    13.Amazon DynamoDB
+
+    14.Amazon Neptune
+
+    15.Amazon Redshift
+
+    16.Amazon Virtual Private Cloud[VPC]
+
+    17.Amazon Route 53
+
+    18.Amazon CloudFront
+
+    19. AWS Application Migration Service
+
+    20.AWS Database Migration Service[DMS]
+
+    21.AWS DataSync
+
+    22.AWS Transfer Family
+
+    23.AWS Snow Family
+
+    24.AWS Identity and Access Management[IAM]
+
+    25. AWS Key Management Service[KMS]
+
+    26.Amazon Macie
+
+    27.AWS Secrets Manager
+
+    28.AWS Shield
+
+    29.AWS Web Application Firewall[WAF]
+
+    30.Amazon Athena
+
+    31.Amazon EMR
+
+    32.AWS Glue
+
+    33.AWS Lake Formation
+
+    34.Amazon Kinesis
+
+    35.Amazon QuickSight
+
+    36.Amazon SageMaker
+
+    37.Amazon EventBridge
+
+    38.Amazon Simple Notification Service[SNS]
+
+    39.Amazon Simple Queue Service[SQS]
+
+    40.AWS Step Functions
+
+    41.The AWS Command Line Interface [CLI]
+
+    42.AWS Cloud9
+
+    43.The AWS Cloud Development Kit[CDK]
+
+    44.AWS CodeCommit
+
+    45.AWS CodeBuild
+
+    46.AWS CodeDeploy
+
+    47.AWS CodePipeline
+
+
+
+1. **Amazon Elastic Compute Cloud (EC2)**:
+   - **Description**: Provides resizable compute capacity in the cloud.
+   - **Real-World Scenario**: A software company launches a new application and uses EC2 instances to host the application servers. They can easily scale the number of instances based on traffic fluctuations.
+
+2. **AWS Batch**:
+   - **Description**: Enables running batch computing workloads on AWS.
+   - **Real-World Scenario**: A financial institution processes large-scale financial transactions overnight using AWS Batch to compute and analyze data without managing the underlying infrastructure.
+
+3. **AWS Lambda**:
+   - **Description**: Allows running code without provisioning or managing servers.
+   - **Real-World Scenario**: A media company uses Lambda to automatically resize images uploaded by users to their platform, optimizing storage and delivery without manual intervention.
+
+4. **AWS Serverless Application Model (SAM)**:
+   - **Description**: Framework for building serverless applications on AWS.
+   - **Real-World Scenario**: An e-commerce startup uses SAM to deploy and manage serverless APIs and functions for their shopping cart and payment processing services.
+
+5. **Amazon Elastic Container Service (ECS)**:
+   - **Description**: Highly scalable, high-performance container management service.
+   - **Real-World Scenario**: A tech company deploys microservices architecture using ECS to manage Docker containers, ensuring seamless deployment and scaling of services.
+
+6. **Amazon Elastic Container Registry (ECR)**:
+   - **Description**: Docker container registry for storing, managing, and deploying Docker container images.
+   - **Real-World Scenario**: An IoT startup uses ECR to store and distribute Docker images of their edge computing applications across their global network of devices.
+
+7. **Amazon Elastic Kubernetes Service (EKS)**:
+   - **Description**: Managed Kubernetes service for running Kubernetes on AWS.
+   - **Real-World Scenario**: A SaaS company adopts EKS to orchestrate and manage containerized applications at scale, leveraging Kubernetes' capabilities for workload management and deployment.
+
+8. **Amazon Simple Storage Service (S3)**:
+   - **Description**: Object storage service for storing and retrieving any amount of data.
+   - **Real-World Scenario**: A healthcare provider stores patient records securely on S3, ensuring compliance with data protection regulations and enabling easy access for authorized personnel.
+
+9. **Amazon Elastic Block Store (EBS)**:
+   - **Description**: Persistent block storage volumes for use with EC2 instances.
+   - **Real-World Scenario**: An online gaming company uses EBS volumes to store and manage game data, ensuring high availability and durability for player experiences.
+
+10. **Amazon Elastic File System (EFS)**:
+    - **Description**: Managed file storage service for EC2 instances.
+    - **Real-World Scenario**: A media production company uses EFS to share and collaborate on large video files across multiple EC2 instances without managing their own file servers.
+
+11. **AWS Backup**:
+    - **Description**: Centralized backup service to automate and manage backups across AWS services.
+    - **Real-World Scenario**: A financial services firm uses AWS Backup to schedule and manage backups of their critical databases (e.g., RDS instances) to ensure data resilience and compliance.
+
+12. **Amazon Relational Database Service (RDS)**:
+    - **Description**: Managed relational database service that simplifies database setup, operation, and scaling.
+    - **Real-World Scenario**: An e-commerce platform uses RDS to manage customer transaction data in a MySQL database, ensuring high availability and automatic backups.
+
+13. **Amazon DynamoDB**:
+    - **Description**: Fully managed NoSQL database service.
+    - **Real-World Scenario**: A gaming company uses DynamoDB to store and retrieve user profiles and game state information with low-latency and high scalability.
+
+14. **Amazon Neptune**:
+    - **Description**: Fully managed graph database service.
+    - **Real-World Scenario**: A social networking platform uses Neptune to analyze and traverse relationships between users, optimizing recommendations and personalization features.
+
+15. **Amazon Redshift**:
+    - **Description**: Fully managed data warehouse service.
+    - **Real-World Scenario**: A retail company uses Redshift to analyze sales data and customer behavior patterns, enabling data-driven decision-making and business insights.
+
+16. **Amazon Virtual Private Cloud (VPC)**:
+    - **Description**: Virtual network for AWS resources.
+    - **Real-World Scenario**: An enterprise sets up a VPC to isolate and secure their AWS resources, ensuring that their applications and data remain private and protected.
+
+17. **Amazon Route 53**:
+    - **Description**: Scalable domain name system (DNS) web service.
+    - **Real-World Scenario**: A media streaming service uses Route 53 to route users to the nearest server based on their geographic location, optimizing performance and reducing latency.
+
+18. **Amazon CloudFront**:
+    - **Description**: Global content delivery network (CDN) service.
+    - **Real-World Scenario**: An e-commerce website uses CloudFront to deliver product images and videos to customers worldwide with low latency and high transfer speeds.
+
+19. **AWS Application Migration Service**:
+    - **Description**: Automates migration of applications to AWS.
+    - **Real-World Scenario**: A manufacturing company migrates its legacy ERP system to AWS using the Application Migration Service, reducing infrastructure costs and improving scalability.
+
+20. **AWS Database Migration Service (DMS)**:
+    - **Description**: Migrates databases to AWS securely and seamlessly.
+    - **Real-World Scenario**: A financial institution migrates its on-premises Oracle database to Amazon Aurora using DMS, minimizing downtime and ensuring data consistency.
+
+21. **AWS DataSync**:
+    - **Description**: Data transfer service that simplifies moving large amounts of data between on-premises storage and AWS.
+    - **Real-World Scenario**: A media production company uses DataSync to transfer large video files from their on-premises storage to Amazon S3, accelerating content delivery workflows.
+
+22. **AWS Transfer Family**:
+    - **Description**: Fully managed file transfer service.
+    - **Real-World Scenario**: A financial services firm uses AWS Transfer Family to securely exchange sensitive financial data with partners and customers over SFTP or FTPS protocols.
+
+23. **AWS Snow Family**:
+    - **Description**: Physical devices to transfer large amounts of data into and out of AWS.
+    - **Real-World Scenario**: A research institute uses AWS Snowball to collect and transfer genomic sequencing data to AWS for analysis, bypassing internet transfer limitations.
+
+24. **AWS Identity and Access Management (IAM)**:
+    - **Description**: Manages access to AWS services and resources securely.
+    - **Real-World Scenario**: A healthcare provider uses IAM to control access to patient records stored on AWS, ensuring only authorized personnel can view or modify sensitive information.
+
+25. **AWS Key Management Service (KMS)**:
+    - **Description**: Manages encryption keys for securing data.
+    - **Real-World Scenario**: An e-commerce company uses KMS to encrypt customer payment information stored in Amazon S3, ensuring data confidentiality and regulatory compliance.
+
+26. **Amazon Macie**:
+    - **Description**: AI-powered security service that discovers, classifies, and protects sensitive data.
+    - **Real-World Scenario**: A financial services firm uses Macie to identify and protect sensitive customer financial information stored in Amazon S3 buckets, preventing unauthorized access.
+
+27. **AWS Secrets Manager**:
+    - **Description**: Manages and rotates credentials, API keys, and other secrets.
+    - **Real-World Scenario**: A software development company uses Secrets Manager to securely store and manage database credentials and API keys, automating key rotation to enhance security.
+
+28. **AWS Shield**:
+    - **Description**: Managed Distributed Denial of Service (DDoS) protection service.
+    - **Real-World Scenario**: An online gaming platform uses AWS Shield to protect against DDoS attacks during high-traffic events, ensuring uninterrupted gameplay for users.
+
+29. **AWS Web Application Firewall (WAF)**:
+    - **Description**: Protects web applications from common web exploits.
+    - **Real-World Scenario**: An e-commerce site uses AWS WAF to block malicious traffic and protect against SQL injection and cross-site scripting (XSS) attacks targeting their online storefront.
+
+30. **Amazon Athena**:
+    - **Description**: Interactive query service to analyze data in Amazon S3 using standard SQL.
+    - **Real-World Scenario**: A digital marketing agency uses Athena to analyze clickstream data stored in S3, generating insights on customer behavior patterns for campaign optimization.
+
+31. **Amazon EMR**:
+    - **Description**: Managed big data processing service using Apache Hadoop and Apache Spark.
+    - **Real-World Scenario**: A retail analytics company uses EMR to process and analyze large volumes of sales data from various sources, enabling real-time business intelligence and forecasting.
+
+32. **AWS Glue**:
+    - **Description**: Fully managed extract, transform, and load (ETL) service.
+    - **Real-World Scenario**: A healthcare provider uses Glue to automate the extraction and transformation of patient data from on-premises databases to Amazon Redshift for analysis and reporting.
+
+33. **AWS Lake Formation**:
+    - **Description**: Simplifies the creation of a data lake on AWS.
+    - **Real-World Scenario**: A media streaming service uses Lake Formation to securely ingest, catalog, and analyze streaming video data from various sources into their data lake on AWS.
+
+34. **Amazon Kinesis**:
+    - **Description**: Managed services for real-time processing of streaming data.
+    - **Real-World Scenario**: An IoT platform uses Kinesis to collect and process sensor data from connected devices in real-time, triggering alerts and actions based on detected patterns.
+
+35. **Amazon QuickSight**:
+    - **
+
+Description**: Business intelligence service for creating and visualizing data dashboards.
+    - **Real-World Scenario**: A retail chain uses QuickSight to create interactive sales dashboards, allowing regional managers to visualize store performance metrics and make data-driven decisions.
+
+36. **Amazon SageMaker**:
+    - **Description**: Managed service for building, training, and deploying machine learning models.
+    - **Real-World Scenario**: A financial institution uses SageMaker to develop and deploy predictive models for credit scoring, automating loan approval processes based on risk assessment.
+
+37. **Amazon EventBridge**:
+    - **Description**: Serverless event bus for building event-driven architectures.
+    - **Real-World Scenario**: An online travel agency uses EventBridge to integrate booking events from their website with backend services, triggering actions such as email confirmations and inventory updates.
+
+38. **Amazon Simple Notification Service (SNS)**:
+    - **Description**: Fully managed messaging service for sending notifications.
+    - **Real-World Scenario**: A logistics company uses SNS to send real-time delivery status updates to customers via SMS and email, improving transparency and customer satisfaction.
+
+39. **Amazon Simple Queue Service (SQS)**:
+    - **Description**: Fully managed message queuing service.
+    - **Real-World Scenario**: A social media platform uses SQS to decouple and scale microservices handling user interactions, ensuring reliable message delivery and fault tolerance.
+
+40. **AWS Step Functions**:
+    - **Description**: Serverless orchestration service to coordinate multiple AWS services into serverless workflows.
+    - **Real-World Scenario**: An e-commerce retailer uses Step Functions to automate order processing workflows, orchestrating tasks such as inventory check, payment processing, and shipping notification.
+
+41. **AWS Command Line Interface (CLI)**:
+    - **Description**: Command-line tool for managing AWS services and resources.
+    - **Real-World Scenario**: A DevOps engineer uses AWS CLI to automate deployments and manage infrastructure configurations across multiple AWS accounts and regions.
+
+42. **AWS Cloud9**:
+    - **Description**: Cloud-based integrated development environment (IDE).
+    - **Real-World Scenario**: A software development team uses Cloud9 to collaborate on coding projects, leveraging its built-in tools for code editing, debugging, and collaboration in real-time.
+
+43. **AWS Cloud Development Kit (CDK)**:
+    - **Description**: Framework for defining infrastructure as code using familiar programming languages.
+    - **Real-World Scenario**: An enterprise IT team uses CDK to provision and manage AWS resources using TypeScript or Python, automating infrastructure deployments and ensuring consistency across environments.
+
+44. **AWS CodeCommit**:
+    - **Description**: Fully managed source control service.
+    - **Real-World Scenario**: A software development company uses CodeCommit to securely store and manage source code repositories, facilitating collaborative development and version control.
+
+45. **AWS CodeBuild**:
+    - **Description**: Fully managed build service that compiles source code, runs tests, and produces software packages.
+    - **Real-World Scenario**: A mobile app startup uses CodeBuild to automate the build and testing of iOS and Android applications, ensuring code quality before deployment to app stores.
+
+46. **AWS CodeDeploy**:
+    - **Description**: Automated deployment service for deploying applications to EC2 instances, Lambda functions, and more.
+    - **Real-World Scenario**: An e-commerce platform uses CodeDeploy to automate the deployment of new features and updates across multiple EC2 instances, ensuring zero downtime and reliable releases.
+
+47. **AWS CodePipeline**:
+    - **Description**: Continuous integration and continuous delivery (CI/CD) service.
+    - **Real-World Scenario**: A fintech company uses CodePipeline to automate the end-to-end software release process, from source code changes to deployment, integration testing, and production release.
+
+Each of these AWS services offers unique capabilities to address specific needs in modern cloud computing environments, providing flexibility, scalability, and efficiency for diverse applications and workloads.
+
